@@ -1,7 +1,7 @@
 import RequestError from "../errors/request_error";
 import AuthProvider from "../interfaces/auth_provider";
 
-export type RequestDescriptor = {
+export type RequestDescription = {
   url: string;
   options?: RequestInit;
   payload?: FormData | any;
@@ -44,7 +44,7 @@ export default class Api {
     url,
     options,
     payload,
-  }: RequestDescriptor): Promise<T> {
+  }: RequestDescription): Promise<T> {
     const fullUrl = `${
       url.startsWith("/") || url.startsWith("http") ? url : `/${url}`
     }`;
@@ -94,7 +94,7 @@ export default class Api {
     url,
     options,
     payload,
-  }: RequestDescriptor & { forcedMimeType?: string }): Promise<File | null> {
+  }: RequestDescription): Promise<File | null> {
     const fullUrl = `${this.baseUrl}${
       url.startsWith("/") || url.startsWith("http") ? url : `/${url}`
     }`;
