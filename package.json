@@ -1,7 +1,4 @@
 {
-  "name": "next-app",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect=5009' next dev",
     "build": "next build",
