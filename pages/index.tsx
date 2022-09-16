@@ -2,12 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
+import { DefaultApi } from "../api/api";
+import CountriesRequests from "../api/requests/countries";
+import useApi from "../hooks/useApi";
 import styles from "../styles/Home.module.css";
-
-import { DefaultApi } from "./api/api";
-import CountriesRequests from "./api/requests/countries";
-import useApi from "./hooks/useApi";
-import Country from "./types/country";
+import Country from "../types/country";
 
 type HomeProps = {
   countries: Array<Country>;
