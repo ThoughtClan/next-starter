@@ -99,8 +99,10 @@ function SomeComponent() {
             const response = await api.performRequest(CountriesRequests.getAllCountries());
 
             setCountries(response);
-        }
-    });
+        };
+
+        fetchCountries();
+    }, []);
 
     ...
 }
