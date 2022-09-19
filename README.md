@@ -69,6 +69,8 @@ In almost all projects at ThoughtClan, we use a different pure-backend applicati
 required for us. We instead use the `api` folder to store these API integration modules. Refer to the code and the inline
 documentation for additional context on what these modules do.
 
+The NextJS default `api` directory is still preserved in case it will be of use to specific projects.
+
 If, however, the NextJS API setup is required, it can still be followed by creating files in the `api` directory that
 directly map to a `page`.
 
@@ -143,3 +145,8 @@ For VSCode, the project-level configuration includes a setting to automatically 
 
 For production deployment, a Docker configuration is included to build an image containing all the necessary steps to
 release the app to production. This image can then be deployed to a server or in a cluster to serve the app to users.
+
+Ensure that the correct values are set in the `.env` file in the root of the repository containing the configuration
+for the production build.
+
+Read more about [how NextJS interprets environment variables](https://nextjs.org/docs/basic-features/environment-variables) to understand how to work with this.

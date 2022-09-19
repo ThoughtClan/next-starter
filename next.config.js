@@ -17,4 +17,5 @@ const withPWA = nextPWA({
 module.exports = withPWA({
   reactStrictMode: true,
   swcMinify: true,
+  output: "standalone",
 });

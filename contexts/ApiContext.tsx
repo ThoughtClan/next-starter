@@ -4,7 +4,7 @@ import Api from "../api/api";
 import AuthProvider from "../interfaces/auth_provider";
 
 const ApiContext = React.createContext<Api>(
-  new Api(process.env.API_BASE_URL ?? "")
+  new Api(process.env.NEXTJS_PUBLIC_API_BASE_URL ?? "")
 );
 
 export default ApiContext;
@@ -25,7 +25,7 @@ export function ApiProvider({
   authProvider,
 }: AuthProviderProps) {
   const apiRef = useRef<Api>(
-    new Api(baseUrl ?? process.env.API_BASE_URL ?? "", authProvider)
+    new Api(baseUrl ?? process.env.NEXTJS_PUBLIC_API_BASE_URL ?? "", authProvider)
   );
 
   return (

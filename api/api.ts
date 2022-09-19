@@ -292,4 +292,4 @@ export default class Api {
 /**
  * A default @see Api instance that can be used in `getServerSideProps`.
  */
-export const DefaultApi = new Api(process.env.API_BASE_URL ?? "");
+export const DefaultApi = new Api(process.env.NEXTJS_PUBLIC_API_BASE_URL ?? "");
