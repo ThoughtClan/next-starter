@@ -1,5 +1,5 @@
 import RequestError from "../errors/request_error";
-import IAuthProvider from "../interfaces/auth_provider";
+import AuthProvider from "../interfaces/auth_provider";
 
 export type RequestDescription = {
   url: string;
@@ -15,13 +15,13 @@ export enum HttpMethod {
 }
 
 export default class Api {
-  private IAuthProvider: IAuthProvider | undefined;
+  private authProvider: AuthProvider | undefined;
 
   private baseUrl: string;
 
-  constructor(baseUrl: string, auth?: IAuthProvider) {
+  constructor(baseUrl: string, auth?: AuthProvider) {
     this.baseUrl = baseUrl;
-    this.IAuthProvider = auth;
+    this.authProvider = auth;
 
     console.debug(`[Api] initialised Api with base URL "${this.baseUrl}"`);
   }
@@ -59,7 +59,10 @@ export default class Api {
     const response = await fetch(fullUrl, {
       ...options,
       headers,
-      body: payload instanceof FormData ? payload : JSON.stringify(payload),
+      body:
+        typeof FormData !== "undefined" && payload instanceof FormData
+          ? payload
+          : JSON.stringify(payload),
     });
 
     if (response.status === 401) {
@@ -106,7 +109,10 @@ export default class Api {
     const response = await fetch(fullUrl, {
       ...options,
       headers,
-      body: payload instanceof FormData ? payload : JSON.stringify(payload),
+      body:
+        typeof FormData !== "undefined" && payload instanceof FormData
+          ? payload
+          : JSON.stringify(payload),
     });
 
     if (response.status === 401) {
@@ -157,8 +163,8 @@ export default class Api {
     let accessToken;
 
     try {
-      if (this.IAuthProvider) {
-        accessToken = await this.IAuthProvider.getToken();
+      if (this.authProvider) {
+        accessToken = await this.authProvider.getToken();
       }
     } catch (e) {
       console.warn(
@@ -176,7 +182,7 @@ export default class Api {
       headers.Authorization = `Bearer ${accessToken}`;
     }
 
-    if (!(payload instanceof FormData)) {
+    if (!(typeof FormData !== "undefined" && payload instanceof FormData)) {
       headers["Content-Type"] = "application/json";
     }
 
@@ -292,4 +298,4 @@ export default class Api {
 /**
  * A default @see Api instance that can be used in `getServerSideProps`.
  */
-export const DefaultApi = new Api(process.env.NEXTJS_PUBLIC_API_BASE_URL ?? "");
+export const DefaultApi = new Api(process.env.API_BASE_URL ?? "");

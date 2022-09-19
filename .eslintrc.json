@@ -132,6 +132,18 @@
         "selector": "interface",
         "prefix": ["I"],
         "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": "enum",
+        "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": "class",
+        "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["strictCamelCase"]
       }
     ]
   }

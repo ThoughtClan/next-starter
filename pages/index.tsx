@@ -110,6 +110,8 @@ export async function getServerSideProps() {
 
     return { props: { countries: response } };
   } catch (e) {
+    console.error("[index] failed to perform request for SSR", e);
+
     return { props: { countries: [] } };
   }
 }
