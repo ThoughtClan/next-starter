@@ -103,7 +103,7 @@ function Home({ countries: countriesProp }: HomeProps) {
 
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const request = CountriesRequests.getAllCountries();
     const response = await DefaultApi.performRequest<Array<Country>>(request);
