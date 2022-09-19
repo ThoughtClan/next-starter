@@ -168,7 +168,7 @@ export default class Api {
       } else {
         throw new Error("No AuthProvider has been provided");
       }
-    } catch (e) {
+    } catch (e: any) {
       console.warn(
         `[Api] unable to retrieve token from auth provider: ${e.message}; proceeding without authentication`
       );
