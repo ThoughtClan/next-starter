@@ -79,7 +79,7 @@ directly map to a `page`.
 All API requests done are generally routed through the same API module so that it can take care of things like configuration
 for API base URLs, appending authentication headers etc.
 
-More details can be seen in inline documentation in the [`Api`](./pages/api/api.ts) file.
+More details can be seen in inline documentation in the [`Api`](./api/api.ts) file.
 
 The general guideline regarding this to create `XRequests.ts` files for each backend service that the app talks to and
 group all requests from the same service into the same file.
@@ -150,3 +150,5 @@ Ensure that the correct values are set in the `.env` file in the root of the rep
 for the production build.
 
 Read more about [how NextJS interprets environment variables](https://nextjs.org/docs/basic-features/environment-variables) to understand how to work with this.
+
+The app will run in the container on port 3000.
