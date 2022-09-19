@@ -1,3 +1,3 @@
-export default interface AuthProvider {
+export default interface IAuthProvider {
   getToken: () => Promise<string>;
 }

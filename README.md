@@ -86,6 +86,43 @@ group all requests from the same service into the same file.
 
 An example of the usage both on client-side and server-side rendering can be seen in the [sample index page](./pages/index.tsx).
 
+By default an instance of the `Api` class is provided at the root of the application as seen in [`_app.tsx`](./pages/_app.tsx). This
+instance can be retrieved in any component in the application using the [`useApi`](./hooks/useApi.ts) hook:
+
+```tsx
+function SomeComponent() {
+    const [countries, setCountries] = useState([]);
+    const api = useApi();
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            const response = await api.performRequest(CountriesRequests.getAllCountries());
+
+            setCountries(response);
+        }
+    });
+
+    ...
+}
+```
+
+If, for any reason, a different API is required to be used (i.e. using a different auth provider or base URL) a new instance can be
+created and hoisted in the component hierarchy using [`ApiProvider`](./providers/ApiProvider.tsx):
+
+```tsx
+function SomeOtherApiParent() {
+    return (
+        <ApiProvider baseUrl="http://some-other-api" authProvider={new SomeOtherAuthProvider()}>
+            ...
+        </ApiProvider>
+    );
+}
+```
+
+This is akin to dependency injection where the dependency is resolved from the nearest provider in the hierarchy.
+In this situation, the `useApi` hook in child components will resolve the `Api` instance from the nearest
+context in the hierarchy.
+
 ### Bundle Splitting
 
 NextJS automatically takes care of bundle splitting at a page level and image related optimsations using the `next/image` component

@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 
-import { ApiProvider } from "../contexts/ApiContext";
+import ApiProvider from "../providers/api_provider";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {

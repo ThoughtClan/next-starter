@@ -124,6 +124,15 @@
           }
         ]
       }
+    ],
+
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "prefix": ["I"],
+        "format": ["StrictPascalCase"]
+      }
     ]
   }
 }

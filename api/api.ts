@@ -1,5 +1,5 @@
 import RequestError from "../errors/request_error";
-import AuthProvider from "../interfaces/auth_provider";
+import IAuthProvider from "../interfaces/auth_provider";
 
 export type RequestDescription = {
   url: string;
@@ -15,13 +15,13 @@ export enum HttpMethod {
 }
 
 export default class Api {
-  private authProvider: AuthProvider | undefined;
+  private IAuthProvider: IAuthProvider | undefined;
 
   private baseUrl: string;
 
-  constructor(baseUrl: string, auth?: AuthProvider) {
+  constructor(baseUrl: string, auth?: IAuthProvider) {
     this.baseUrl = baseUrl;
-    this.authProvider = auth;
+    this.IAuthProvider = auth;
 
     console.debug(`[Api] initialised Api with base URL "${this.baseUrl}"`);
   }
@@ -157,8 +157,8 @@ export default class Api {
     let accessToken;
 
     try {
-      if (this.authProvider) {
-        accessToken = await this.authProvider.getToken();
+      if (this.IAuthProvider) {
+        accessToken = await this.IAuthProvider.getToken();
       }
     } catch (e) {
       console.warn(
