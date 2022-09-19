@@ -81,7 +81,7 @@ function Home({ countries: countriesProp }: HomeProps) {
         </ul>
 
         <button type="button" onClick={reloadCountries}>
-          reload
+          load all countries
         </button>
       </main>
 
@@ -108,7 +108,11 @@ export async function getServerSideProps() {
     const request = CountriesRequests.getAllCountries();
     const response = await DefaultApi.performRequest<Array<Country>>(request);
 
-    return { props: { countries: response } };
+    return {
+      props: {
+        countries: response.sort(() => 0.5 - Math.random()).slice(0, 5),
+      },
+    };
   } catch (e) {
     console.error("[index] failed to perform request for SSR", e);
 
