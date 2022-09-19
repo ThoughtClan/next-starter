@@ -165,11 +165,12 @@ export default class Api {
     try {
       if (this.authProvider) {
         accessToken = await this.authProvider.getToken();
+      } else {
+        throw new Error("No AuthProvider has been provided");
       }
     } catch (e) {
       console.warn(
-        "[Api] unable to retrieve token from auth provider; proceeding without authentication",
-        e
+        `[Api] unable to retrieve token from auth provider: ${e.message}; proceeding without authentication`
       );
     }
 
