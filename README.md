@@ -135,6 +135,9 @@ This is akin to dependency injection where the dependency is resolved from the n
 In this situation, the `useApi` hook in child components will resolve the `Api` instance from the nearest
 context in the hierarchy.
 
+If required, this can also be wrapped with NextJS's [SWR](https://swr.vercel.app/) feature for caching
+client-side requests.
+
 ### Bundle Splitting
 
 NextJS automatically takes care of bundle splitting at a page level and image related optimsations using the `next/image` component
