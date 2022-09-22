@@ -1,3 +1,5 @@
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
@@ -5,6 +7,7 @@ import { useState } from "react";
 import { DefaultApi } from "../api/api";
 import CountriesRequests from "../api/requests/countries";
 import useApi from "../hooks/useApi";
+import nextI18NextConfig from "../next-i18next.config.js";
 import styles from "../styles/Home.module.css";
 import Country from "../types/country";
 
@@ -15,6 +18,7 @@ type HomeProps = {
 function Home({ countries: countriesProp }: HomeProps) {
   const [countries, setCountries] = useState<Array<Country>>(countriesProp);
   const api = useApi();
+  const { t } = useTranslation("common");
 
   const reloadCountries = async () => {
     try {
@@ -38,6 +42,9 @@ function Home({ countries: countriesProp }: HomeProps) {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <h2>Localistion example:</h2>
+        <p>{t("hello")}</p>
 
         <p className={styles.description}>
           Get started by editing{" "}
@@ -103,7 +110,7 @@ function Home({ countries: countriesProp }: HomeProps) {
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }: { locale: string }) {
   try {
     const request = CountriesRequests.getAllCountries();
     const response = await DefaultApi.performRequest<Array<Country>>(request);
@@ -111,6 +118,11 @@ export async function getStaticProps() {
     return {
       props: {
         countries: response.sort(() => 0.5 - Math.random()).slice(0, 5),
+        ...(await serverSideTranslations(
+          locale,
+          ["common"],
+          nextI18NextConfig
+        )),
       },
     };
   } catch (e) {

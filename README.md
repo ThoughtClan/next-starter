@@ -74,6 +74,16 @@ The NextJS default `api` directory is still preserved in case it will be of use 
 If, however, the NextJS API setup is required, it can still be followed by creating files in the `api` directory that
 directly map to a `page`.
 
+### `IAuthProvider`
+
+The [`IAuthProvider`](./interfaces/auth_provider.ts) interface describes objects that can be used as an authentication provider
+for the `Api` module described in the next section.
+
+This allows for flexibility in using different authentication backends as long as they offer
+a method to provide the authorisation token needed for API integration.
+
+Objects implementing this interface can be supplied to `Api`s to authenticate requests.
+
 ### API Integration
 
 All API requests done are generally routed through the same API module so that it can take care of things like configuration
