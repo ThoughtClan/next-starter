@@ -190,6 +190,11 @@ in your editor if it supports ESLint.
 
 For VSCode, the project-level configuration includes a setting to automatically format and fix auto-fixable problems on save.
 
+### Localisation
+
+The localisation setup is done using [`next-i18next`](https://github.com/i18next/next-i18next#readme) and instructions on how to work with this
+package can be found in their README.
+
 ## Production
 
 For production deployment, a Docker configuration is included to build an image containing all the necessary steps to
