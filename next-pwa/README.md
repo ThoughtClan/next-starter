@@ -7,7 +7,7 @@ folowed at ThoughtClan.
 
 Create a new project using this template by using the `create-next-app` tool:
 
-`npx create-next-app --example https://github.com/ThoughtClan/next-starter <PROJECT_NAME>`
+`npx create-next-app --example https://github.com/ThoughtClan/next-starter/next-pwa <PROJECT_NAME>`
 
 This will set up a new project in a directory created using the `<PROJECT_NAME>` value.
 
