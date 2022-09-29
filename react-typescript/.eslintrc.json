@@ -148,6 +148,11 @@
       {
         "selector": "variable",
         "format": ["strictCamelCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["StrictPascalCase"],
+        "modifiers": ["exported"]
       }
     ]
   }

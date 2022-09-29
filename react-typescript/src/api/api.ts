@@ -290,6 +290,7 @@ export default class Api {
     return error;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private static handleUnauthorised(response: any) {
     // TODO: add global session expiry here
     throw new Error("Not implemented");
