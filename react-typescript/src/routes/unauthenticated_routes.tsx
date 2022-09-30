@@ -1,5 +1,11 @@
-import { Routes } from "react-router";
+import { Route, Routes } from "react-router";
+
+import Login from "./Login";
 
 export default function UnauthenticatedRoutes() {
-  return <Routes />;
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+    </Routes>
+  );
 }
