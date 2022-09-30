@@ -7,7 +7,7 @@ import IAuthProvider from "../interfaces/auth_provider";
 type AuthProviderProps = {
   children: ReactNode;
   baseUrl?: string;
-  IAuthProvider?: IAuthProvider;
+  authProvider?: IAuthProvider;
 };
 
 /**
@@ -17,12 +17,12 @@ type AuthProviderProps = {
 export default function ApiProvider({
   children,
   baseUrl,
-  IAuthProvider,
+  authProvider,
 }: AuthProviderProps) {
   const apiRef = useRef<Api>(
     new Api(
       baseUrl ?? process.env.NEXTJS_PUBLIC_API_BASE_URL ?? "",
-      IAuthProvider
+      authProvider
     )
   );
 

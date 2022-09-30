@@ -1,6 +1,5 @@
 {
   "extends": [
-    "next",
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
@@ -121,6 +120,11 @@
             "pattern": "{.,..}/**/*.scss",
             "group": "sibling",
             "position": "after"
+          },
+          {
+            "pattern": "{.,..}/**/*.css",
+            "group": "sibling",
+            "position": "after"
           }
         ]
       }
@@ -144,6 +148,11 @@
       {
         "selector": "variable",
         "format": ["strictCamelCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["StrictPascalCase"],
+        "modifiers": ["exported"]
       }
     ]
   }
