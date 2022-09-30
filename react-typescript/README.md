@@ -149,4 +149,4 @@ release the app to production. This image can then be deployed to a server or in
 Ensure that the correct values are set in the `.env` file in the root of the repository containing the configuration
 for the production build.
 
-The app will run in the container on port 3000.
+The app will run in the container on port 8080.
