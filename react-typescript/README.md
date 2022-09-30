@@ -18,61 +18,12 @@ viewed at [localhost:3000](https://localhost:3000).
 
 ## Configuration
 
-### PWA
-
-This template is configured with a PWA setup out of the box using the `next-pwa` package. This can be modified if required,
-or removed altogether, by removing the appropriate section of [`next.config.js`](./next.config.js):
-
-```diff
-/** @type {import('next').NextConfig} */
-// eslint-disable-next-line import/no-extraneous-dependencies
-const FormData = require("form-data");
--const nextPWA = require("next-pwa");
--const runtimeCaching = require("next-pwa/cache");
-
-// eslint-disable-next-line no-undef
-globalThis.FormData = FormData;
-
--const withPWA = nextPWA({
--  dest: "public",
--  runtimeCaching,
--  register: true,
--  skipWaiting: true,
--});
-
--module.exports = withPWA({
--  reactStrictMode: true,
--  swcMinify: true,
--});
-+module.exports = {
-+  reactStrictMode: true,
-+  swcMinify: true,
-+};
-```
-
 
 ## Guidelines
 
 ### Folder Structure
 
-For the most part, the structure follows the NextJS specified folder structure. Every page in the app will be placed under
-`pages` where the NextJS framework will automatically detect the pages and create separate JS bundles and server rendering
-paths for them.
-
-More guidelines for working with NextJS can be found in their documentation and everything mentioned there applies here
-as well.
-
-The main different being the structure of the `api` folder. In the NextJS convention, this folder contains files that
-directly map to a page under `pages`, causing that route to behave like an API endpoint rather than a HTML document.
-However, this is not applicable in the case of apps that use external APIs rather the using the same server as an API.
-In almost all projects at ThoughtClan, we use a different pure-backend application to host APIs and hence this is not
-required for us. We instead use the `api` folder to store these API integration modules. Refer to the code and the inline
-documentation for additional context on what these modules do.
-
-The NextJS default `api` directory is still preserved in case it will be of use to specific projects.
-
-If, however, the NextJS API setup is required, it can still be followed by creating files in the `api` directory that
-directly map to a `page`.
+The project follows the folder structure described in the [main README](../README.md).
 
 ### `IAuthProvider`
 
@@ -140,11 +91,8 @@ client-side requests.
 
 ### Bundle Splitting
 
-NextJS automatically takes care of bundle splitting at a page level and image related optimsations using the `next/image` component
-to load images.
-
-However, in case there is some additional bundle splitting required in the case of heavy non-page modules etc., we can
-demarcate an additional point of splitting by using Webpack's lazy imports:
+Bundle splitting can be accomplished by using the `import()` method provided by Webpack. More details
+can be found in Webpack's documentation
 
 ```jsx
 // Normal JS module
@@ -193,11 +141,6 @@ in your editor if it supports ESLint.
 
 For VSCode, the project-level configuration includes a setting to automatically format and fix auto-fixable problems on save.
 
-### Localisation
-
-The localisation setup is done using [`next-i18next`](https://github.com/i18next/next-i18next#readme) and instructions on how to work with this
-package can be found in their README.
-
 ## Production
 
 For production deployment, a Docker configuration is included to build an image containing all the necessary steps to
@@ -205,7 +148,5 @@ release the app to production. This image can then be deployed to a server or in
 
 Ensure that the correct values are set in the `.env` file in the root of the repository containing the configuration
 for the production build.
-
-Read more about [how NextJS interprets environment variables](https://nextjs.org/docs/basic-features/environment-variables) to understand how to work with this.
 
 The app will run in the container on port 3000.
