@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import logo from "../../assets/images/logo.svg";
 import useAuth from "../../hooks/useAuth";
 
@@ -5,6 +7,7 @@ import "./home.scss";
 
 export default function Home() {
   const auth = useAuth();
+  const { t } = useTranslation(["common"]);
 
   const onFakeLogout = () => {
     localStorage.removeItem("user");
@@ -27,6 +30,9 @@ export default function Home() {
         >
           Learn React
         </a>
+
+        <h2>localisation</h2>
+        <p>{t("common:hello")}</p>
 
         <button type="button" className="App-link" onClick={onFakeLogout}>
           Mock Logout

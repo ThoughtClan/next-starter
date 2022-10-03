@@ -1,22 +1,16 @@
-# NextJS Starter Template
+# React SPA Template
 
-This repository contains a template for bootstrapping new NextJS projects, customised slightly to fit conventions
+This repository contains a template for bootstrapping new React SPA projects, customised slightly to fit conventions
 folowed at ThoughtClan.
 
 ## Setting Up
 
-Create a new project using this template by using the `create-next-app` tool:
-
-`npx create-next-app --example https://github.com/ThoughtClan/next-starter/next-pwa <PROJECT_NAME>`
-
-This will set up a new project in a directory created using the `<PROJECT_NAME>` value.
+CRA support is still WIP, in the meantime the template can be used by cloning the repo and using this folder.
 
 ## Development
 
 To run the local development server, simply run `yarn run dev` which will start up the development server and can be
 viewed at [localhost:3000](https://localhost:3000).
-
-## Configuration
 
 
 ## Guidelines
@@ -86,8 +80,21 @@ This is akin to dependency injection where the dependency is resolved from the n
 In this situation, the `useApi` hook in child components will resolve the `Api` instance from the nearest
 context in the hierarchy.
 
-If required, this can also be wrapped with NextJS's [SWR](https://swr.vercel.app/) feature for caching
-client-side requests.
+### Authenication state
+
+An authentication context has been setup that can be used to track the user authentication state
+of the application. The template contains a very basic `User` model, and the presence of a `User` object
+is used to determine whether the app is authenticated or not. This functionality can be extended
+as required by each project.
+
+Refer to [`AuthProvider`](./src/providers/auth_provider.tsx) (not to be confused with [`IAuthProvider`](./src/interfaces/auth_provider.ts) which is a wrapper for the auth backends used in the app such as AWS Cognito or Firebase).
+
+### React Router
+
+The project has been setup with `react-router` v6. There are two collections of base routes setup in
+[authenticated_routes](./src/routes/authenticated_routes.tsx) and [unauthenticated_routes](./src/routes/unauthenticated_routes.tsx). Add new routes
+for the app as relevant to these files. The collection displayed changes based on the authentication
+state in the app.
 
 ### Bundle Splitting
 
@@ -140,6 +147,11 @@ The project will be set up with ESLint and Prettier, which can be run on the com
 in your editor if it supports ESLint.
 
 For VSCode, the project-level configuration includes a setting to automatically format and fix auto-fixable problems on save.
+
+### Internationalisation
+
+The project has been setup with `react-i18next` and more information on how to work with it can
+be found in their official documentation.
 
 ## Production
 

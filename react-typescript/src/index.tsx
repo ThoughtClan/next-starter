@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./app";
+import "./i18n";
 import reportWebVitals from "./reportWebVitals";
 
 import "./styles/globals.css";
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback="loading...">
+      <App />
+    </Suspense>
   </React.StrictMode>
 );
 
