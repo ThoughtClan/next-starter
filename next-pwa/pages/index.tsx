@@ -7,9 +7,11 @@ import { useState } from "react";
 import { DefaultApi } from "../api/api";
 import CountriesRequests from "../api/requests/countries";
 import useApi from "../hooks/useApi";
+// eslint-disable-next-line import/extensions
 import nextI18NextConfig from "../next-i18next.config.js";
-import styles from "../styles/Home.module.css";
 import Country from "../types/country";
+
+import styles from "../styles/Home.module.css";
 
 type HomeProps = {
   countries: Array<Country>;
