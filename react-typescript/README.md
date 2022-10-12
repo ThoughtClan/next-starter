@@ -5,7 +5,8 @@ folowed at ThoughtClan.
 
 ## Setting Up
 
-CRA support is still WIP, in the meantime the template can be used by cloning the repo and using this folder.
+CRA support is still WIP, in the meantime the template can also be used by `create-next-app https://github.com/ThoughtClan/react-templates/tree/main/react-typescript`. Since `create-next-app` simply clones the template into a new directory, it will still work without plugging in
+NextJS dependencies.
 
 ## Development
 
