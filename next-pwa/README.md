@@ -24,15 +24,6 @@ This template is configured with a PWA setup out of the box using the `next-pwa`
 or removed altogether, by removing the appropriate section of [`next.config.js`](./next.config.js):
 
 ```diff
-/** @type {import('next').NextConfig} */
-// eslint-disable-next-line import/no-extraneous-dependencies
-const FormData = require("form-data");
--const nextPWA = require("next-pwa");
--const runtimeCaching = require("next-pwa/cache");
-
-// eslint-disable-next-line no-undef
-globalThis.FormData = FormData;
-
 -const withPWA = nextPWA({
 -  dest: "public",
 -  runtimeCaching,
@@ -41,12 +32,10 @@ globalThis.FormData = FormData;
 -});
 
 -module.exports = withPWA({
--  reactStrictMode: true,
--  swcMinify: true,
+-  ...
 -});
 +module.exports = {
-+  reactStrictMode: true,
-+  swcMinify: true,
++  ...
 +};
 ```
 
@@ -198,6 +187,16 @@ For VSCode, the project-level configuration includes a setting to automatically 
 The localisation setup is done using [`next-i18next`](https://github.com/i18next/next-i18next#readme) and instructions on how to work with this
 package can be found in their README.
 
+### Scraping prevention techniques
+
+Refer to this writeup: https://github.com/JonasCz/How-To-Prevent-Scraping.
+
+Scraping prevention techniques come with their own pitfalls affecting both SEO and app performance, and must be applied after considertion
+of benefits and whether they are worth the cost.
+
+For this project, Webpack has been configured to hash CSS classnames as the minimal, least obtrusive technique of scraping
+prevention. This configuration can be seen in the `css-loader` config in the [NextJS config](./next.config.js).
+
 ## Production
 
 For production deployment, a Docker configuration is included to build an image containing all the necessary steps to
@@ -209,3 +208,9 @@ for the production build.
 Read more about [how NextJS interprets environment variables](https://nextjs.org/docs/basic-features/environment-variables) to understand how to work with this.
 
 The app will run in the container on port 3000.
+
+### Code Obfuscation
+
+JS code obfuscation can be enabled by setting the environment variable `USE_JS_OBFUSCATION=1` when running the `build` script.
+
+For production, this can be enabled by uncommenting the relevant `ENV` line in the [Dockerfile](./Dockerfile).
