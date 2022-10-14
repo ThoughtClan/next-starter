@@ -18,3 +18,27 @@ The build for the library will be done using Rollup as it is better suited for l
 
 Out of the box, the template will support all the basic features of a React library, including JSX, images, (S)CSS etc. Anything additional required can be
 added to the [Rollup configuration](./rollup.config.js).
+
+## Guidelines
+
+### Exports
+
+As this is a library and not a regular react application, it is important to ensure that the `src` directory contains an `index.ts` that exports all the public entities offered by the library, as it is the
+root manifest of the library.
+
+Once it has been exported, the consuming app can import it as `import { LibraryComponent } from "@thoughtclan/react-library"`.
+
+### Local testing
+
+When developing the package, the package can be added to the main app through local paths or using the package manager's linking feature.
+
+Check out [Yarn's documentation for linking](https://classic.yarnpkg.com/en/docs/cli/link). Once the package has been linked, Rollup can be started in this project in watch mode using `yarn start` and the changes
+made to the libraries will be rebuilt and reflect in the main application.
+
+### Peer dependencies
+
+Packages required by the library that are also expected in the main app (for instance, the React dependency) should be added as peer dependencies. This is
+so that the resolved package comes from a single source (the parent's node_modules) and is not
+duplicated in runtime by a library-local version of the package.
+
+These dependencies will only truly be resolved when the library is integrated into the main app, and the library's build process ignores these missing dependencies.
