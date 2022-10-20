@@ -138,6 +138,10 @@
         "format": ["StrictPascalCase"]
       },
       {
+        "selector": "typeAlias",
+        "format": ["StrictPascalCase"]
+      },
+      {
         "selector": "enum",
         "format": ["StrictPascalCase"]
       },
